@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/raw/nature_kit/ground_dirtRiverWater.gltf" type="PackedScene" id=1]
+
+[sub_resource type="ConvexPolygonShape" id=1]
+points = PoolVector3Array( -1, 0, 0, 0, 0, 0, -1, 0.2, 0, 0, 0.2, 0, 0, 0, 1, -1, 0, 1, 0, 0.2, 1, -1, 0.2, 1, 0, 0.2, 0, 0, 0, 0, 0, 0.2, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, -1, 0, 1, -1, 0, 0, -1, 0, 0, -1, 0.2, 0, -1, 0, 1, -1, 0.2, 1, 0, 0.2, 0, 0, 0.2, 1, -1, 0.2, 0, -1, 0.2, 1, -1, 0, 0, 0, 0, 0, -1, 0.2, 0, 0, 0.2, 0, 0, 0, 1, -1, 0, 1, 0, 0.2, 1, -1, 0.2, 1, 0, 0.2, 0, 0, 0, 0, 0, 0.2, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, -1, 0, 1, -1, 0, 0, -1, 0, 0, -1, 0.2, 0, -1, 0, 1, -1, 0.2, 1, 0, 0.2, 0, 0, 0.2, 1, -1, 0.2, 0, -1, 0.2, 1 )
+
+[node name="dirt_river_water" index="0" instance=ExtResource( 1 )]
+
+[node name="ground_dirtRiverWater" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="." index="1"]
+shape = SubResource( 1 )
+
