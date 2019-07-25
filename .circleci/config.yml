@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: briaoeuidhtns/godot-docker-primary:3.1.1.0
+    steps:
+      - checkout
+
+      - run:
+          name: GUT
+          command: python3 ./run_tests
+
+      - store_test_results:
+          path: build/test_results

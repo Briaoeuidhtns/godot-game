@@ -1,2 +1,64 @@
-!#/usr/bin/env bash
-godot -d -s --path $(dirname "$0") addons/gut/gut_cmdln.gd
+#!/usr/bin/env python3
+
+import sys
+from pathlib import Path
+from subprocess import run
+import typing as t
+from junit_xml import TestCase, TestSuite
+import regex
+from functools import partial
+from os import chdir
+
+PROJECT = Path(__file__).parent
+GODOT = 'godot'
+GUT = PROJECT / 'addons/gut/gut_cmdln.gd'
+Match = type(regex.match('.', '.'))
+PATTERN = regex.compile(
+    r'\/-----------------------------------------\n'
+    r'Running Script (?P<file>.*$)\n'
+    r'-----------------------------------------\/\n'
+    r'((\* (?P<name>.+))\n'
+    r'    (?P<status>PASSED|FAILED):  (?P<msg>[\s\S]*?)(?=\*|^$))*',
+    regex.MULTILINE | regex.VERSION1)
+
+
+def parse_result(result: str):
+    it = map(Match.capturesdict, PATTERN.finditer(result))
+    test_cases = []
+    for testfile in it:
+        # File will never be duplicated, the others are all same len
+        dup = {k: v for k, v in testfile.items() if k != 'file'}
+        cases = map(lambda c: zip(dup.keys(), c), zip(*dup.values()))
+        for case in cases:
+            testfile.update(case)
+            test_case = TestCase(
+                name=testfile['name'],
+                file=testfile['file'][0],
+            )
+
+            {
+                'PASSED': partial(setattr, test_case, 'stdout'),
+                'FAILED': test_case.add_failure_info,
+                'SKIPPPED': test_case.add_skipped_info,
+                'ERROR': test_case.add_error_info,
+            }[testfile['status']](testfile['msg'])
+
+            test_cases.append(test_case)
+    return [TestSuite('Tests', test_cases)]
+
+
+def run_tests(godot=GODOT, project=PROJECT, gut=GUT):
+    command = (godot, '-s', '--path', str(project), str(gut))
+    proc_result = run(command, capture_output=True, text=True)
+    return proc_result.stdout
+
+
+def main(file=None):
+    file = file or PROJECT/'build/test_results/GUT/results.xml'
+    file.parent.mkdir(parents=True, exist_ok=True)
+    with file.open('w') as out:
+        TestSuite.to_file(out, parse_result(run_tests()))
+
+
+if __name__ == '__main__':
+    main()
