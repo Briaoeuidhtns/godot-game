@@ -5,6 +5,8 @@ jobs:
       - image: briaoeuidhtns/godot-docker-primary:3.1.1.0
     steps:
       - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
 
       - run:
           name: GUT
