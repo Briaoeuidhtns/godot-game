@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 
-import sys
 from pathlib import Path
 from subprocess import run
-import typing as t
 from junit_xml import TestCase, TestSuite
 import regex
 from functools import partial
-from os import chdir
 
 PROJECT = Path(__file__).parent
 GODOT = 'godot'
