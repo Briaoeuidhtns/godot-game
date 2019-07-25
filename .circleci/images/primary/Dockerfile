@@ -5,6 +5,9 @@ ARG GODOT_VARIANT=stable
 
 WORKDIR "/home/circleci"
 
+COPY requirements.txt requirements.txt
+RUN sudo pip install -r requirements.txt && rm requirements.txt
+
 RUN echo "ipv6" | sudo tee -a /etc/modules > /dev/null \
     && wget \
 "http://download.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_VARIANT}_linux_headless.64.zip" \

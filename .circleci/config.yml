@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: briaoeuidhtns/godot-docker-primary:3.1.1.0
+      - image: briaoeuidhtns/godot-docker-primary:3.1.1.1
     steps:
       - checkout
       - run: git submodule sync
