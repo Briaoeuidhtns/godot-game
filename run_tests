@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
 from pathlib import Path
-from subprocess import run
+from subprocess import Popen, PIPE, STDOUT
 from junit_xml import TestCase, TestSuite
 import regex
 from functools import partial
+from itertools import tee
 
 PROJECT = Path(__file__).parent
 GODOT = 'godot'
@@ -45,13 +46,16 @@ def parse_result(result: str):
 
 
 def run_tests(godot=GODOT, project=PROJECT, gut=GUT):
-    command = (godot, '-s', '--path', str(project), str(gut))
-    proc_result = run(command, capture_output=True, text=True)
-    return proc_result.stdout
+    command = (godot, '--no-window', '-s', '--path', str(project), str(gut))
+    with Popen(command, text=True, stdout=PIPE, bufsize=0) as proc:
+        out_it_print, out_it_store = tee(iter(proc.stdout.read, ''))
+        for outl in out_it_print:
+            print(outl, end='')
+    return ''.join(out_it_store)
 
 
 def main(file=None):
-    file = file or PROJECT/'build/test_results/GUT/results.xml'
+    file = file or PROJECT / 'build/test_results/GUT/results.xml'
     file.parent.mkdir(parents=True, exist_ok=True)
     with file.open('w') as out:
         TestSuite.to_file(out, parse_result(run_tests()))
