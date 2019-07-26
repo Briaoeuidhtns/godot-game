@@ -9,8 +9,9 @@ points = PoolVector3Array( 0, 5.35035e-16, 1.14, -1.03955e-13, 5.41434e-16, 0, -
 transform = Transform( 0.333, 0, 0, 0, 0.455, 0, 0, 0, 0.402, 0, 0, 0 )
 
 [node name="cliffBrown_top" parent="." index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform = Transform( 0.333, 0, 0, 0, 0.455, 0, 0, 0, 0.402, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="1"]
+transform = Transform( 0.333, 0, 0, 0, 0.405, 0, 0, 0, 0.402, 0, 0, 0 )
 shape = SubResource( 1 )
 
