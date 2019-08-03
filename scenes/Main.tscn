@@ -12,7 +12,7 @@
 [ext_resource path="res://assets/cliff/brown/cliff_waterfall_top.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/cliff/brown/cliff.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/ground/dirt_river_rocks.tscn" type="PackedScene" id=12]
-[ext_resource path="res://abstract/Container.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/items/TestContainer.tscn" type="PackedScene" id=13]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 10, 10 )

@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "myInventoryManager",
 "language": "GDScript",
-"path": "res://API/InventoryManager.gd"
+"path": "res://api/InventoryManager.gd"
 }, {
 "base": "Node",
 "class": "myItem",
@@ -44,7 +44,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-InventoryManager="*res://API/InventoryManager.gd"
+InventoryManager="*res://api/InventoryManager.gd"
 
 [editor_plugins]
 
