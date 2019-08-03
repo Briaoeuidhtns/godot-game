@@ -8,9 +8,32 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "StaticBody",
+"class": "myContainer",
+"language": "GDScript",
+"path": "res://abstract/Container.gd"
+}, {
+"base": "StaticBody",
+"class": "myInteractable",
+"language": "GDScript",
+"path": "res://abstract/Interactable.gd"
+}, {
+"base": "Node",
+"class": "myInventoryManager",
+"language": "GDScript",
+"path": "res://API/InventoryManager.gd"
+}, {
+"base": "Node",
+"class": "myItem",
+"language": "GDScript",
+"path": "res://abstract/Item.gd"
+} ]
 _global_script_class_icons={
-
+"myContainer": "",
+"myInteractable": "",
+"myInventoryManager": "",
+"myItem": ""
 }
 
 [application]
