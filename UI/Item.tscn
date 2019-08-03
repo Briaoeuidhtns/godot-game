@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=2]
-
-[sub_resource type="Theme" id=1]
+[gd_scene format=2]
 
 [node name="Item" type="MarginContainer"]
 anchor_right = 1.0
@@ -12,6 +10,5 @@ margin_bottom = 600.0
 rect_min_size = Vector2( 0, 40 )
 hint_tooltip = "Longer Item Description"
 size_flags_horizontal = 3
-theme = SubResource( 1 )
 text = "Item Name"
 
