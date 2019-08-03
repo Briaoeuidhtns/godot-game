@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/Main.tscn.gd" type="Script" id=1]
 [ext_resource path="res://Char.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/cliff/brown/cliff_waterfall_top.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/cliff/brown/cliff.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/ground/dirt_river_rocks.tscn" type="PackedScene" id=12]
+[ext_resource path="res://abstract/Container.tscn" type="PackedScene" id=13]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 10, 10 )
@@ -22,7 +23,7 @@ albedo_color = Color( 0.32549, 0.607843, 0.027451, 1 )
 [sub_resource type="ConvexPolygonShape" id=3]
 points = PoolVector3Array( 5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, -5 )
 
-[node name="Spatial" type="Spatial"]
+[node name="Level" type="Spatial"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 script = ExtResource( 1 )
 
@@ -98,4 +99,8 @@ transform = Transform( -8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -4, 0, 
 
 [node name="dirt_river_corner2" parent="Level" instance=ExtResource( 5 )]
 transform = Transform( -2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -2, 0, 6 )
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Container" parent="Node" instance=ExtResource( 13 )]
 
