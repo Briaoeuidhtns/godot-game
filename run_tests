@@ -11,16 +11,18 @@ PROJECT = Path(__file__).parent
 GODOT = 'godot'
 GUT = PROJECT / 'addons/gut/gut_cmdln.gd'
 Match = type(regex.match('.', '.'))
+COLOR_FILTER = partial(regex.compile(r'\x1B[@-_][0-?]*[ -/]*[@-~]').sub, '')
 PATTERN = regex.compile(
     r'\/-----------------------------------------\n'
     r'Running Script (?P<file>.*$)\n'
     r'-----------------------------------------\/\n'
     r'((\* (?P<name>.+))\n'
-    r'    (?P<status>PASSED|FAILED):  (?P<msg>[\s\S]*?)(?=\*|^$))*',
+    r'(?:    )?(?P<status>PASSED|FAILED|SCRIPT ERROR):  (?P<msg>[\s\S]*?)(?=\*|^$))*',
     regex.MULTILINE | regex.VERSION1)
 
 
 def parse_result(result: str):
+    result = COLOR_FILTER(result)
     it = map(Match.capturesdict, PATTERN.finditer(result))
     test_cases = []
     for testfile in it:
@@ -38,7 +40,7 @@ def parse_result(result: str):
                 'PASSED': partial(setattr, test_case, 'stdout'),
                 'FAILED': test_case.add_failure_info,
                 'SKIPPPED': test_case.add_skipped_info,
-                'ERROR': test_case.add_error_info,
+                'SCRIPT_ERROR': test_case.add_error_info,
             }[testfile['status']](testfile['msg'])
 
             test_cases.append(test_case)
@@ -47,19 +49,26 @@ def parse_result(result: str):
 
 def run_tests(godot=GODOT, project=PROJECT, gut=GUT):
     command = (godot, '--no-window', '-s', '--path', str(project), str(gut))
-    with Popen(command, text=True, stdout=PIPE, bufsize=0) as proc:
+    with Popen(command,
+               text=True,
+               stdout=PIPE,
+               stderr=STDOUT,
+               bufsize=0
+               ) as proc:
         out_it_print, out_it_store = tee(iter(proc.stdout.read, ''))
         for outl in out_it_print:
             print(outl, end='')
-    return ''.join(out_it_store)
+    return ''.join(out_it_store), proc.returncode
 
 
 def main(file=None):
     file = file or PROJECT / 'build/test_results/GUT/results.xml'
     file.parent.mkdir(parents=True, exist_ok=True)
     with file.open('w') as out:
-        TestSuite.to_file(out, parse_result(run_tests()))
+        stdout, ret = run_tests()
+        TestSuite.to_file(out, parse_result(stdout))
+    return ret
 
 
 if __name__ == '__main__':
-    main()
+    exit(main())
