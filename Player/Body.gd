@@ -1,4 +1,5 @@
 extends KinematicBody
+class_name myChar
 
 var speed = 5
 const GRAVITY = 9.8
@@ -10,6 +11,7 @@ const MAX_SLOPE_ANGLE = deg2rad(40)
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 
 func get_input():
 	var dir = Vector3(0,0,0)
