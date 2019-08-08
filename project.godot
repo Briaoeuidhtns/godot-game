@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody",
+"class": "myChar",
+"language": "GDScript",
+"path": "res://Player/Body.gd"
+}, {
 "base": "StaticBody",
 "class": "myContainer",
 "language": "GDScript",
@@ -24,12 +29,13 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://api/InventoryManager.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "myItem",
 "language": "GDScript",
 "path": "res://abstract/Item.gd"
 } ]
 _global_script_class_icons={
+"myChar": "",
 "myContainer": "",
 "myInteractable": "",
 "myInventoryManager": "",
@@ -45,6 +51,7 @@ config/icon="res://icon.png"
 [autoload]
 
 InventoryManager="*res://api/InventoryManager.gd"
+Events="*res://logging/Events.gd"
 
 [editor_plugins]
 

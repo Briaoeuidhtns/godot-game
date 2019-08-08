@@ -9,4 +9,4 @@ func _ready():
 	pass # Replace with function body.
 
 func interact():
-	InventoryManager.offer([Item.new()])
+	InventoryManager.offer({Item.new(): 1})

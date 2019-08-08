@@ -11,5 +11,6 @@ func _input_event(camera, event, click_position, click_normal, shape_idx):
 		primed = false
 		interact()
 
+
 func interact():
 	pass
