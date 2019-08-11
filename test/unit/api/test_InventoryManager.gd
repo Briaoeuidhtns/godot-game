@@ -13,6 +13,7 @@ func before_each():
 	watch_signals(InventoryManager)
 
 
+### Offer ###
 func test_has_offer():
 	assert_has_method(InventoryManager, 'offer')
 
@@ -41,6 +42,7 @@ func test_offered_signal_item():
 	assert_eq(params[1].val, false)
 
 
+### Give ###
 func test_has_give():
 	assert_has_method(InventoryManager, 'give')
 
@@ -64,3 +66,56 @@ func test_given_signal_item():
 
 	assert_eq(params[0].keys(), [item])
 	assert_eq(params[0][item], 1)
+
+### Request ###
+func test_has_request():
+	assert_has_method(InventoryManager, 'request')
+
+
+func test_has_requested_signal():
+	assert_has_signal(InventoryManager, "requested")
+
+
+func test_requested_signal_no_item():
+	assert_signal_not_emitted(InventoryManager, 'requested')
+	InventoryManager.request({})
+	assert_signal_emitted(InventoryManager, 'requested')
+
+
+func test_requested_signal_item():
+	var item = Item.new()
+	InventoryManager.request({item: 1})
+
+	var params = get_signal_parameters(InventoryManager, 'requested')
+	assert_not_null(params)
+
+	assert_eq(params[0].keys(), [item])
+	assert_eq(params[0][item], 1)
+
+	# Not accepted by default
+	assert_eq(params[1].val, false)
+
+
+### Take ###
+func test_has_take():
+	assert_has_method(InventoryManager, 'take')
+
+
+func test_has_taken_signal():
+	assert_has_signal(InventoryManager, "taken")
+
+
+func test_taken_signal_no_item():
+	assert_signal_not_emitted(InventoryManager, 'taken')
+	InventoryManager.take({})
+	assert_signal_emitted(InventoryManager, 'taken')
+
+
+func test_taken_signal_item():
+	var item = Item.new()
+	InventoryManager.take({item: 1})
+
+	var params = get_signal_parameters(InventoryManager, 'taken')
+	assert_not_null(params)
+
+	assert_eq(params[0].keys(), [item])

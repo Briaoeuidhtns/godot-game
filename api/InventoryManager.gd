@@ -18,6 +18,7 @@ func offer(items):
 	emit_signal("offered", items, box)
 	if box.val:
 		give(items)
+	return box.val
 
 
 func give(items):
@@ -25,7 +26,9 @@ func give(items):
 
 
 func take(items):
-	emit_signal("taken", items)
+	var box = Box.new(false)
+	emit_signal("taken", items, box)
+	return box.val
 
 
 func request(items):
@@ -36,14 +39,6 @@ func request(items):
 
 
 ##### Internal #####
-
-func __agg_any():
-	var agg_val := false
-	var val = false
-	while not(val is String and val == __END):
-		agg_val = agg_val or val
-		val = yield()
-	return val
 
 class Box:
 	var val
