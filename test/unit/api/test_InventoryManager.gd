@@ -18,8 +18,13 @@ func stub_decline(items, box):
 
 
 func stub_accept(items, box):
-	gut.p('accept')
 	box.val = true
+
+
+# Just to test project config.
+# The rest should use module scoped version
+func test_singleton_type():
+	assert_is($root/InventoryManager, InventoryManager_t)
 
 
 ### Offer ###
@@ -47,8 +52,10 @@ func test_offered_signal_item():
 	assert_eq(params[0].keys(), [item])
 	assert_eq(params[0][item], 1)
 
-	# Not accepted by default
-	assert_eq(params[1].val, false)
+
+func test_default_offer():
+	var item = Item.new()
+	assert_false(InventoryManager.offer({item: 1}))
 
 
 func test_declined_offer():
@@ -114,8 +121,10 @@ func test_requested_signal_item():
 	assert_eq(params[0].keys(), [item])
 	assert_eq(params[0][item], 1)
 
-	# Not accepted by default
-	assert_eq(params[1].val, false)
+
+func test_request_default():
+	var item = Item.new()
+	assert_false(InventoryManager.request({item: 1}))
 
 
 func test_declined_request():
