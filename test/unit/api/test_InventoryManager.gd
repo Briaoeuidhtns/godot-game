@@ -13,6 +13,15 @@ func before_each():
 	watch_signals(InventoryManager)
 
 
+func stub_decline(items, box):
+	box.val = false
+
+
+func stub_accept(items, box):
+	gut.p('accept')
+	box.val = true
+
+
 ### Offer ###
 func test_has_offer():
 	assert_has_method(InventoryManager, 'offer')
@@ -40,6 +49,19 @@ func test_offered_signal_item():
 
 	# Not accepted by default
 	assert_eq(params[1].val, false)
+
+
+func test_declined_offer():
+	var item = Item.new()
+	InventoryManager.connect('offered', self, "stub_decline")
+	assert_false(InventoryManager.offer({item: 1}))
+
+
+
+func test_accepted_offer():
+	var item = Item.new()
+	InventoryManager.connect('offered', self, "stub_accept")
+	assert_true(InventoryManager.offer({item: 1}))
 
 
 ### Give ###
@@ -94,6 +116,18 @@ func test_requested_signal_item():
 
 	# Not accepted by default
 	assert_eq(params[1].val, false)
+
+
+func test_declined_request():
+	var item = Item.new()
+	InventoryManager.connect('requested', self, "stub_decline")
+	assert_false(InventoryManager.request({item: 1}))
+
+
+func test_accepted_request():
+	var item = Item.new()
+	InventoryManager.connect('requested', self, "stub_accept")
+	assert_true(InventoryManager.request({item: 1}))
 
 
 ### Take ###

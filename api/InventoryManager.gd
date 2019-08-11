@@ -36,6 +36,7 @@ func request(items):
 	emit_signal('requested', items, box)
 	if box.val:
 		take(items)
+	return box.val
 
 
 ##### Internal #####
