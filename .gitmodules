@@ -1,3 +1,6 @@
 [submodule "modules/Gut"]
 	path = modules/Gut
 	url = https://github.com/bitwes/Gut
+[submodule "modules/godot-logger"]
+	path = modules/godot-logger
+	url = https://github.com/KOBUGE-Games/godot-logger
