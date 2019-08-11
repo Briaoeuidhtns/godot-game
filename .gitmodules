@@ -3,4 +3,4 @@
 	url = https://github.com/bitwes/Gut
 [submodule "modules/godot-logger"]
 	path = modules/godot-logger
-	url = https://github.com/KOBUGE-Games/godot-logger
+	url = git@github.com:Briaoeuidhtns/godot-logger.git

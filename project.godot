@@ -50,8 +50,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-InventoryManager="*res://api/InventoryManager.gd"
 Events="*res://logging/Events.gd"
+InventoryManager="*res://api/InventoryManager.gd"
+Logger="*res://addons/logger/logger.gd"
 
 [editor_plugins]
 
