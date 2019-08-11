@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "myItem",
 "language": "GDScript",
 "path": "res://abstract/Item.gd"
+}, {
+"base": "Node",
+"class": "myItemRegistrar",
+"language": "GDScript",
+"path": "res://api/ItemRegistrar.gd"
 } ]
 _global_script_class_icons={
 "myChar": "",
 "myContainer": "",
 "myInteractable": "",
 "myInventoryManager": "",
-"myItem": ""
+"myItem": "",
+"myItemRegistrar": ""
 }
 
 [application]
@@ -50,9 +56,10 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Events="*res://logging/Events.gd"
+ItemRegistrar="*res://api/ItemRegistrar.gd"
 InventoryManager="*res://api/InventoryManager.gd"
 Logger="*res://addons/logger/logger.gd"
+Events="*res://logging/Events.gd"
 
 [editor_plugins]
 
