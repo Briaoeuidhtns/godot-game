@@ -24,6 +24,7 @@ func stub_accept(items, box):
 # Just to test project config.
 # The rest should use module scoped version
 func test_singleton_type():
+	assert_not_null($root/InventoryManager)
 	assert_is($root/InventoryManager, InventoryManager_t)
 
 
