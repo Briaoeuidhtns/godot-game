@@ -11,4 +11,4 @@ func _ready():
 	InventoryManager.connect('requested', self, 'log_inventory', ['requested'])
 
 func log_inventory(items, _acceptor, event):
-	print(event, ' ', items, '.')
+	Logger.info('%s %s.' % [event, items])
