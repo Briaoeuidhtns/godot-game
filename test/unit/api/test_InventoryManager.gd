@@ -56,20 +56,20 @@ func test_offered_signal_item():
 
 func test_default_offer():
 	var item = Item.new()
-	assert_false(InventoryManager.offer({item: 1}))
+	assert_false(InventoryManager.offer({item: 1}), 'offer returns false')
 
 
 func test_declined_offer():
 	var item = Item.new()
 	InventoryManager.connect('offered', self, "stub_decline")
-	assert_false(InventoryManager.offer({item: 1}))
+	assert_false(InventoryManager.offer({item: 1}), 'offer returns false')
 
 
 
 func test_accepted_offer():
 	var item = Item.new()
 	InventoryManager.connect('offered', self, "stub_accept")
-	assert_true(InventoryManager.offer({item: 1}))
+	assert_true(InventoryManager.offer({item: 1}), 'offer returns true')
 
 
 ### Give ###
@@ -125,19 +125,19 @@ func test_requested_signal_item():
 
 func test_request_default():
 	var item = Item.new()
-	assert_false(InventoryManager.request({item: 1}))
+	assert_false(InventoryManager.request({item: 1}), 'request returns false')
 
 
 func test_declined_request():
 	var item = Item.new()
 	InventoryManager.connect('requested', self, "stub_decline")
-	assert_false(InventoryManager.request({item: 1}))
+	assert_false(InventoryManager.request({item: 1}), 'request returns false')
 
 
 func test_accepted_request():
 	var item = Item.new()
 	InventoryManager.connect('requested', self, "stub_accept")
-	assert_true(InventoryManager.request({item: 1}))
+	assert_true(InventoryManager.request({item: 1}), 'request returns true')
 
 
 ### Take ###
