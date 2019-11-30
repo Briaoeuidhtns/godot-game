@@ -50,7 +50,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="kenney_3d"
+config/name="rpg"
 run/main_scene="res://scenes/Main.tscn"
 config/icon="res://icon.png"
 
@@ -60,6 +60,10 @@ ItemRegistrar="*res://api/ItemRegistrar.gd"
 InventoryManager="*res://api/InventoryManager.gd"
 Logger="*res://addons/logger/logger.gd"
 Events="*res://logging/Events.gd"
+
+[debug]
+
+gdscript/completion/autocomplete_setters_and_getters=true
 
 [editor_plugins]
 
@@ -105,4 +109,6 @@ action_interact={
 
 [rendering]
 
+quality/subsurface_scattering/quality=2
+quality/filters/msaa=4
 environment/default_environment="res://default_env.tres"

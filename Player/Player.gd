@@ -16,7 +16,6 @@ func _on_Item_taken(_items, _accept):
 func _on_Item_given(items, _accept):
 	for item in items:
 		inventory[item] = inventory.get(item, 0) + 1
-	print('given: ', items, 'inventory: ', inventory)
 
 
 func _on_Item_requested(items, _accept):
