@@ -103,4 +103,3 @@ transform = Transform( -2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -2, 0, 
 [node name="Node" type="Node" parent="."]
 
 [node name="Container" parent="Node" instance=ExtResource( 13 )]
-

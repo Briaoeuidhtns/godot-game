@@ -22,7 +22,8 @@ func offer(items):
 
 
 func give(items):
-	emit_signal("given", items)
+	var box = Box.new(false)
+	emit_signal("given", items, box)
 
 
 func take(items):

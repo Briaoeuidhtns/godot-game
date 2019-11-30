@@ -9,21 +9,21 @@ func _ready():
 	InventoryManager.connect('given', self, '_on_Item_given')
 
 
-func _on_Item_taken(items):
+func _on_Item_taken(_items, _accept):
 	pass
 
 
-func _on_Item_given(items):
+func _on_Item_given(items, _accept):
 	for item in items:
 		inventory[item] = inventory.get(item, 0) + 1
 	print('given: ', items, 'inventory: ', inventory)
 
 
-func _on_Item_requested(items):
+func _on_Item_requested(items, _accept):
 	for item in items:
 		if not inventory.get(item, 0):
 			return false
 
 
-func _on_Item_offered(items, accept):
+func _on_Item_offered(_items, accept):
 	accept.val = true

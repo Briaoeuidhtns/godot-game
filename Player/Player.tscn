@@ -33,4 +33,3 @@ material/0 = null
 
 [node name="Camera" type="Camera" parent="Char"]
 transform = Transform( 1, 0, 0, 0, 0.832913, 0.553404, 0, -0.553404, 0.832913, 0, 3.66477, 4.65986 )
-
