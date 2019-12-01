@@ -3,12 +3,13 @@
 from pathlib import Path
 from subprocess import Popen, PIPE, STDOUT
 from junit_xml import TestCase, TestSuite
+from os import environ
 import regex
 from functools import partial
 from itertools import tee
 
 PROJECT = Path(__file__).parent
-GODOT = 'godot-beta'
+GODOT = environ.get('GODOT', 'godot')
 GUT = PROJECT / 'addons/gut/gut_cmdln.gd'
 Match = type(regex.match('.', '.'))
 COLOR_FILTER = partial(regex.compile(r'\x1B[@-_][0-?]*[ -/]*[@-~]').sub, '')
