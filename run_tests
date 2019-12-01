@@ -8,7 +8,7 @@ from functools import partial
 from itertools import tee
 
 PROJECT = Path(__file__).parent
-GODOT = 'godot'
+GODOT = 'godot-beta'
 GUT = PROJECT / 'addons/gut/gut_cmdln.gd'
 Match = type(regex.match('.', '.'))
 COLOR_FILTER = partial(regex.compile(r'\x1B[@-_][0-?]*[ -/]*[@-~]').sub, '')
