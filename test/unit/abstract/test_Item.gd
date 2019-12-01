@@ -11,5 +11,5 @@ func before_each():
 
 func test_name():
 	var item = Item.new()
-	assert_has_method(item, '_get_name')
-	assert_not_null(item._get_name())
+	assert_has_method(item, 'get_name')
+	assert_not_null(item.get_name())

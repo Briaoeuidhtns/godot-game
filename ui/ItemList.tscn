@@ -2,25 +2,37 @@
 
 [ext_resource path="res://ui/ItemList.gd" type="Script" id=1]
 
-[node name="ContainerInventory" type="Panel"]
+[node name="ContainerInventory" type="AcceptDialog"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+window_title = "Items"
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="main" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -36.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
-margin_right = 1024.0
-margin_bottom = 600.0
+[node name="Scroll" type="ScrollContainer" parent="main"]
+margin_right = 1008.0
+margin_bottom = 556.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
-[node name="Items" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
-margin_right = 1024.0
-margin_bottom = 600.0
+[node name="Items" type="VBoxContainer" parent="main/Scroll"]
+margin_right = 1008.0
+margin_bottom = 556.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
+[connection signal="confirmed" from="." to="." method="_on_accepted"]
+[connection signal="custom_action" from="." to="." method="_on_closed"]

@@ -1,4 +1,4 @@
 class_name myItem
 
-func _get_name():
-	return 'Item'
+func get_name():
+	return 'Unnamed Item'

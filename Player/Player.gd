@@ -5,7 +5,6 @@ onready var InventoryManager = get_node('/root/InventoryManager')
 var inventory := {}
 
 func _ready():
-	InventoryManager.connect('offered', self, '_on_Item_offered')
 	InventoryManager.connect('given', self, '_on_Item_given')
 
 
@@ -22,7 +21,3 @@ func _on_Item_requested(items, _accept):
 	for item in items:
 		if not inventory.get(item, 0):
 			return false
-
-
-func _on_Item_offered(_items, accept):
-	accept.val = true

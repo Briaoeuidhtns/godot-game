@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/cliff/brown/cliff.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/ground/dirt_river_rocks.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/items/TestContainer.tscn" type="PackedScene" id=13]
+[ext_resource path="res://ui/ItemList.tscn" type="PackedScene" id=14]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 10, 10 )
@@ -27,13 +28,13 @@ points = PoolVector3Array( 5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, -5 )
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 script = ExtResource( 1 )
 
+[node name="ContainerInventory" parent="." instance=ExtResource( 14 )]
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="Level" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Ground" type="StaticBody" parent="Level"]
-editor/display_folded = true
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Level/Ground"]
