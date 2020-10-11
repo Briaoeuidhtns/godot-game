@@ -4,3 +4,6 @@
 [submodule "modules/godot-logger"]
 	path = modules/godot-logger
 	url = git@github.com:Briaoeuidhtns/godot-logger.git
+[submodule "ArcadiaGodot"]
+	path = ArcadiaGodot
+	url = git@github.com:arcadia-unity/ArcadiaGodot.git
